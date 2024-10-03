@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { DetalhesFilme } from '../../models/detalhes-filme.model';
 import { ActivatedRoute } from '@angular/router';
 import { FilmeService } from '../../services/filme.service';
-import { formatDate, NgClass, NgIf } from '@angular/common';
+import { formatDate, NgClass, NgForOf, NgIf } from '@angular/common';
 import { GeneroFilme } from '../../models/genero-filme.model';
 import { VideoFilme } from '../../models/video-filme.model';
 import { DomSanitizer } from '@angular/platform-browser';
+import { MembroCreditos } from '../../models/membro-creditos.model';
 
 @Component({
   selector: 'app-detalhes-filme',
   standalone: true,
-  imports: [NgIf, NgClass],
+  imports: [NgIf, NgClass, NgForOf,],
   templateUrl: './detalhes-filme.component.html',
   styleUrl: './detalhes-filme.component.scss'
 })
@@ -55,6 +56,8 @@ export class DetalhesFilmeComponent implements OnInit {
         .join(', '),
 
       videos: obj.videos.results.map((v:any) => this.mapearVideoFilme(v)),
+
+      elencoPrincipal: obj.credits.cast.map(this.mapearElencoFilme),
     };
   }
 
@@ -72,6 +75,15 @@ export class DetalhesFilmeComponent implements OnInit {
       id: obj.id,
       nome: obj.name
     };
+  }
+
+  private mapearElencoFilme(obj:any): MembroCreditos {
+    return {
+      id: obj.id,
+      nome: obj.name,
+      papel: obj.character,
+      urlImagem: 'https://image.tmdb.org/t/p/w300' + obj.profile_path
+    }
   }
 
   private mapearVideoFilme(obj: any): VideoFilme {
