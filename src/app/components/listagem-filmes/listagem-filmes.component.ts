@@ -3,26 +3,34 @@ import { FilmeService } from '../../services/filme.service';
 import { ListagemFilme } from '../../models/listagem-filme.model';
 import { formatDate, NgClass, NgForOf } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { FilmeFavorito } from '../../models/filme-favorito.model';
+import { LocalStorageService } from '../../services/local-storage.service';
+import { FilmesFavoritosComponent } from "../filmes-favoritos/filmes-favoritos.component";
 
 @Component({
   selector: 'app-listagem-filmes',
   standalone: true,
-  imports: [NgForOf, NgClass, RouterLink],
+  imports: [NgForOf, NgClass, RouterLink, FilmesFavoritosComponent],
   templateUrl: './listagem-filmes.component.html',
   styleUrl: './listagem-filmes.component.scss'
 })
 export class ListagemFilmesComponent implements OnInit {
   public filmes: ListagemFilme[];
 
+  public filmesFavoritos: FilmeFavorito[];
+
   private pagina: number;
 
-  constructor(private filmeService: FilmeService) {
+  constructor(private filmeService: FilmeService, private localStorageService: LocalStorageService) {
     this.filmes = [];
+    this.filmesFavoritos = [];
     this.pagina = 1;
   }
 
   ngOnInit(): void {
     this.buscarFilmesPopulares();
+
+    this.filmesFavoritos = this.localStorageService.obterFavoritos();
   }
 
   public buscarFilmesPopulares() {
