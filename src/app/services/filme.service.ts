@@ -7,12 +7,19 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class FilmeService {
+
   private readonly urlApi:string = 'https://api.themoviedb.org/3/movie';
 
   constructor(private http: HttpClient) { }
 
   public selecionarFilmesPopulares(pagina: number):Observable<any> {
     const urlCompleto = `${this.urlApi}/popular?page=${pagina}&language=pt-BR`
+
+    return this.http.get<any>(urlCompleto, this.obterHeadersDeAutorizacao());
+  }
+
+  public selecionarDetalhesFilmePorId(id: any): Observable<any> {
+    const urlCompleto = `${this.urlApi}/${id}?language=pt-BR`;
 
     return this.http.get<any>(urlCompleto, this.obterHeadersDeAutorizacao());
   }

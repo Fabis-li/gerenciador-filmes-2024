@@ -5,5 +5,6 @@ import { DetalhesFilmeComponent } from './components/detalhes-filme/detalhes-fil
 export const routes: Routes = [
   {path: '', redirectTo: 'filmes', pathMatch: 'full'},
   {path: 'filmes', component: ListagemFilmesComponent },
-  {path: 'filmes/:id', component: DetalhesFilmeComponent }
+  {path: 'filmes/:id', component: DetalhesFilmeComponent},
+
 ];
