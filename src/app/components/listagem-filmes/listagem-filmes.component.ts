@@ -11,7 +11,14 @@ import { BarraBuscaComponent } from "../barra-busca/barra-busca.component";
 @Component({
   selector: 'app-listagem-filmes',
   standalone: true,
-  imports: [NgIf, NgForOf, NgClass, RouterLink, FilmesFavoritosComponent, BarraBuscaComponent],
+  imports: [
+    NgIf,
+    NgForOf,
+    NgClass,
+    RouterLink,
+    FilmesFavoritosComponent,
+    BarraBuscaComponent
+  ],
   templateUrl: './listagem-filmes.component.html',
   styleUrl: './listagem-filmes.component.scss'
 })

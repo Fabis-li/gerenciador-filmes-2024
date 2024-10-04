@@ -1,5 +1,9 @@
-<div *ngIf="detalhes">
-  <div>
+<div
+  *ngIf="detalhes"
+  class="app-banner-fundo"
+  [style.background-image]="'url(' + detalhes.urlFundo + ')'"
+>
+  <div class="app-overlay-banner">
     <main class="container py-5">
       <section arial-label="Detalhes do Filme" class="row g-3">
         <div class="col-lg-3">
@@ -54,7 +58,10 @@
               </div>
           </header>
 
-          <article class="ratio ratio-16x9 mt-4">
+          <article
+            *ngIf="detalhes.videos.length > 0"
+            class="ratio ratio-16x9 mt-4"
+          >
             <iframe
               [attr.arial-label]="'Trailer do Filme ' + detalhes.titulo"
               [src]="detalhes.videos[0].sourceUrl"

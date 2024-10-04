@@ -120,7 +120,9 @@ export class DetalhesFilmeComponent implements OnInit {
   private mapearVideoFilme(obj: any): VideoFilme {
     return {
       id: obj.id,
-      sourceUrl: this.domSanitizer.bypassSecurityTrustResourceUrl('http://www.youtube.com/embed/' + obj.key),
+      sourceUrl: this.domSanitizer.bypassSecurityTrustResourceUrl(
+        'http://www.youtube.com/embed/' + obj.key
+      ),
     };
   }
 }
