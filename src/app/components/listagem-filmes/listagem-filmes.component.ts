@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmeService } from '../../services/filme.service';
 import { ListagemFilme } from '../../models/listagem-filme.model';
-import { formatDate, NgClass, NgForOf } from '@angular/common';
+import { formatDate, NgClass, NgForOf, NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FilmeFavorito } from '../../models/filme-favorito.model';
 import { LocalStorageService } from '../../services/local-storage.service';
@@ -11,7 +11,7 @@ import { BarraBuscaComponent } from "../barra-busca/barra-busca.component";
 @Component({
   selector: 'app-listagem-filmes',
   standalone: true,
-  imports: [NgForOf, NgClass, RouterLink, FilmesFavoritosComponent, BarraBuscaComponent],
+  imports: [NgIf, NgForOf, NgClass, RouterLink, FilmesFavoritosComponent, BarraBuscaComponent],
   templateUrl: './listagem-filmes.component.html',
   styleUrl: './listagem-filmes.component.scss'
 })

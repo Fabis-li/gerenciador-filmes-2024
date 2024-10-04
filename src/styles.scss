@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import 'bootstrap';
+@import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons';
+@import 'ngx-toastr/toastr-bs5-alert';
 
 .app-card-filme {
   transition: color, box-shadow 200ms ease-in-out;
