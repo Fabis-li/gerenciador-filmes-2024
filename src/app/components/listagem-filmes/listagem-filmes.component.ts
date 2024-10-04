@@ -6,11 +6,12 @@ import { RouterLink } from '@angular/router';
 import { FilmeFavorito } from '../../models/filme-favorito.model';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { FilmesFavoritosComponent } from "../filmes-favoritos/filmes-favoritos.component";
+import { BarraBuscaComponent } from "../barra-busca/barra-busca.component";
 
 @Component({
   selector: 'app-listagem-filmes',
   standalone: true,
-  imports: [NgForOf, NgClass, RouterLink, FilmesFavoritosComponent],
+  imports: [NgForOf, NgClass, RouterLink, FilmesFavoritosComponent, BarraBuscaComponent],
   templateUrl: './listagem-filmes.component.html',
   styleUrl: './listagem-filmes.component.scss'
 })
@@ -21,10 +22,13 @@ export class ListagemFilmesComponent implements OnInit {
 
   private pagina: number;
 
+  public carregandoListagem: boolean;
+
   constructor(private filmeService: FilmeService, private localStorageService: LocalStorageService) {
     this.filmes = [];
     this.filmesFavoritos = [];
     this.pagina = 1;
+    this.carregandoListagem = false;
   }
 
   ngOnInit(): void {
@@ -34,6 +38,8 @@ export class ListagemFilmesComponent implements OnInit {
   }
 
   public buscarFilmesPopulares() {
+    this.carregandoListagem = true;
+
     this.filmeService.selecionarFilmesPopulares(this.pagina).subscribe((response) => {
       const resultados = response.results as any[];
 
@@ -42,6 +48,8 @@ export class ListagemFilmesComponent implements OnInit {
       this.filmes.push(...filmesMapeados);
 
       this.pagina++;
+
+      this.carregandoListagem = false;
     });
   }
 
