@@ -127,7 +127,7 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "",
+            "baseHref": "https://fabis-li.github.io/gerenciador-filmes-2024/",
             "repo": "https://github.com/Fabis-li/gerenciador-filmes-2024.git"
           }
         }
