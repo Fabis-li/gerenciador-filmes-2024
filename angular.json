@@ -123,6 +123,13 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "",
+            "repo": "https://github.com/Fabis-li/gerenciador-filmes-2024.git"
+          }
         }
       }
     }
